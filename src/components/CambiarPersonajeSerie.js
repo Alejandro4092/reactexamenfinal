@@ -13,8 +13,8 @@ export default class CambiarPersonajeSerie extends Component {
 
     }
 
-    LoadSeries = () => {
-        let id = this.props.idSerie;
+    LoadDatos = () => {
+
         var request = "api/series/"
         axios.get(this.url + request).then(response => {
             console.log(this.selectSerie.value)
@@ -22,10 +22,6 @@ export default class CambiarPersonajeSerie extends Component {
                 series: response.data
             });
         });
-    }
-
-    loadPersonajes = () => {
-  
         var request = "/api/personajes/";
         axios.get(this.url + request).then(response => {
             console.log(this.selectSerie.value)
@@ -35,7 +31,13 @@ export default class CambiarPersonajeSerie extends Component {
             });
         })
     }
-   CambiarPersonajeSerie=()=>{
+
+    loadPersonajes = () => {
+  
+        
+    }
+   CambiarPersonajeSerie=(event)=>{
+    event.preventDefault();
     const idPersonaje= this.selectPersonaje.current.value;
     const idSerie= this.selectSerie.current.value;
     var request="/api/Personajes/"+idPersonaje+"/"+idSerie;
@@ -45,8 +47,7 @@ export default class CambiarPersonajeSerie extends Component {
    }
    
     componentDidMount = () => {
-        this.LoadSeries();
-        this.loadPersonajes();
+        this.LoadDatos();
        
     }
     
@@ -66,6 +67,7 @@ export default class CambiarPersonajeSerie extends Component {
                             )
                         })
                     }
+
                     </select>
                     <select ref={this.selectPersonaje}>
                     
@@ -82,12 +84,14 @@ export default class CambiarPersonajeSerie extends Component {
                         })
                     }
              </select>
+            
 
 
                 <button className="btn btn-primary" onClick={this.CambiarPersonajeSerie}>
                     Cambiar Personaje de Serie
                 </button>
             </form>
+            
         )
     }
 }

@@ -23,6 +23,7 @@ export default class CreateApuesta extends Component {
 
     axios.post(this.url + request, nuevoPersonaje).then(response => {
         console.log("Personaje insertado correctamente"+response.data);
+     
 
     });
   }
@@ -50,6 +51,7 @@ export default class CreateApuesta extends Component {
             <input type="text" className="form-control" ref={this.cajaidSerie}  />
           </div>
           <button type="submit" className="btn btn-primary">Guardar</button>
+          <NavLink to="/" className="btn btn-secondary ms-2">Volver</NavLink>
          
         </form>
       </div>
